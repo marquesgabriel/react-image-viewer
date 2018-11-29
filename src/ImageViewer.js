@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import stylePropType from 'react-style-proptype';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class ImageViewer extends Component {
   constructor(props) {
@@ -38,7 +38,7 @@ export default class ImageViewer extends Component {
     };
 
     this.handleContainerTap = this.handleContainerTap.bind(this);
-    this.hanleImageTap = this.hanleImageTap.bind(this);
+    this.handleImageTap = this.handleImageTap.bind(this);
   }
 
   componentDidMount() {
@@ -154,7 +154,7 @@ export default class ImageViewer extends Component {
     }
   }
 
-  hanleImageTap(event) {
+  handleImageTap(event) {
     event.preventDefault();
     event.stopPropagation();
     if(this.state.isViewing) {
@@ -212,16 +212,16 @@ export default class ImageViewer extends Component {
         className={this.props.className}
         style={containerStyle}
         ref={element => this.$container = element}
-        onTouchTap={this.handleContainerTap}
+        onClick={this.handleContainerTap}
       >
         <div
           style={imageStyle}
           ref={element => this.$image = element}
-          onTouchTap={this.hanleImageTap}
+          onClick={this.handleImageTap}
         />
         <div
           style={backgroundStyle}
-          onTouchTap={this.hanleImageTap}
+          onClick={this.handleImageTap}
         />
         <img
           src={this.props.image}
@@ -235,7 +235,7 @@ export default class ImageViewer extends Component {
 }
 ImageViewer.propTypes = {
   className: PropTypes.string,
-  style: stylePropType,
+  style: PropTypes.string,
   image: PropTypes.string.isRequired,
   config: PropTypes.shape({
     viewedImageSize: PropTypes.number,
